@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "COSCUP session schedule",
+  "type": "object",
+  "properties": {
+    "sessions": {
+      "type": "array",
+      "description": "A list of sessions with detailed information.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier for the session."
+          },
+          "type": {
+            "type": "string",
+            "description": "The type code representing the session category."
+          },
+          "room": {
+            "type": "string",
+            "description": "The room code where the session will take place."
+          },
+          "start": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The start time of the session in ISO 8601 format."
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The end time of the session in ISO 8601 format."
+          },
+          "language": {
+            "type": "string",
+            "description": "The language in which the session will be conducted."
+          },
+          "zh": {
+            "$ref": "#/definitions/sessionContent"
+          },
+          "en": {
+            "$ref": "#/definitions/sessionContent"
+          },
+          "speakers": {
+            "type": "array",
+            "description": "A list of speaker IDs associated with the session.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "tags": {
+            "type": "array",
+            "description": "A list of tags associated with the session.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "co_write": {
+            "type": ["string", "null"],
+            "description": "Co-writing information, if applicable."
+          },
+          "qa": {
+            "type": ["string", "null"],
+            "description": "Q&A information, if applicable."
+          },
+          "slide": {
+            "type": ["string", "null"],
+            "description": "Slide information, if applicable."
+          },
+          "record": {
+            "type": ["string", "null"],
+            "description": "Recording information, if applicable."
+          },
+          "uri": {
+            "type": "string",
+            "description": "The URI linking to more information about the session."
+          }
+        },
+        "required": ["id", "type", "room", "start", "end", "language", "zh", "en", "speakers", "tags", "uri"]
+      }
+    }
+  },
+  "required": ["sessions"],
+  "definitions": {
+    "sessionContent": {
+      "type": "object",
+      "description": "The session details in a specific language.",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "The title of the session."
+        },
+        "description": {
+          "type": "string",
+          "description": "The description of the session."
+        }
+      },
+      "required": ["title", "description"]
+    }
+  }
+}
